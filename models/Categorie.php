@@ -15,7 +15,7 @@
         //[visibilite(private(-)|public(+)|protected(#)) ] type(php 8>) $attribut
          private int $id;
          private string $libelle;
-         protected static function tableName(){
+         protected  static function tableName(){
           return "categorie";
          }
 
@@ -35,21 +35,7 @@
            *      
            */
 
-          
-
-
-           
-        public function create():int{
-          $conn = get_connection();
-          $sql = $conn->prepare('INSERT INTO '.self::tableName().' (libelle) VALUES (:libelle)');
-          $sql ->execute(['libelle' => $this->libelle]);
-         if ( $sql->rowCount()>0) {
-          $this->id = $conn->lastInsertId();
-         }
-          $sql ->closeCursor();
-          return $sql->rowCount() ;
-          $conn = null;
-        }
+        
 
         
 

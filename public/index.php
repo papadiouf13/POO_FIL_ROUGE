@@ -1,8 +1,8 @@
 <?php 
+require "./../models/BaseDeDonnees.php";
 require "../models/Model.php";
 require "./../models/Categorie.php";
 require "./../models/ArticleConfection.php";
-require "./../models/bd.php";
 require_once "../helpers/help.php";
 /**
  * Manipulation une Classe 
@@ -16,12 +16,11 @@ require_once "../helpers/help.php";
  * 
  *   
  */
-dd(ArticleConfection::all('article_confection'));die;
-// dd(categorie::all('categorie'));die;
-$categorie=new Categorie();
-$categorie->setLibelle("DALL");
-$categorie->create();
-var_dump($categorie);die;
+// dd(ArticleConfection::all('article_confection'));die;
+dd(Categorie::create([
+    "libelle" => "PREUKH"
+]));
+
 
 
 
