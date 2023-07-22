@@ -12,8 +12,15 @@ class ArticleConfection extends Model {
    
       //Cle etrangere
         private int $categorieId;
+        private Categorie $categorieModel ;
+
+        public function __construct(){
+            $this->categorieModel = new Categorie();
+        }
        //Navigation 
-       private Categorie $categorie;
+       public function categorie(){
+        return $this->categorieModel->find($this->categorieId);
+       }
     /**
      * Get the value of id
      */ 
