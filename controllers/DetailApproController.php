@@ -13,9 +13,9 @@ public function index() {
     // dd($datas);
     // die('OKKK');
     ob_start();
-    require "../ressources/views/detailappro/liste.html.php";
+    require "../public/ressources/views/detailappro/liste.html.php";
     $content_for_view = ob_get_clean();
-    require "../ressources/views/base.layout.html.php";
+    require "../public/ressources/views/base.layout.html.php";
     
 }
 
@@ -27,6 +27,7 @@ public function index() {
 public function create(){
 
 }
+
 
 /** 
 *

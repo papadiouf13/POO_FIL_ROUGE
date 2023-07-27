@@ -58,6 +58,7 @@
         $sql = $connect->prepare('INSERT INTO '.static::tableName().' ('.implode(',', array_keys($data)).') VALUES (:'.implode(',:', array_keys($data)).')');
         $sql->execute($data);
         $sql ->closeCursor();
+        // dd($connect->lastInsertId());
         return $connect->lastInsertId();
     }
 
@@ -77,30 +78,41 @@
         $sql ->closeCursor();
     }
 
-    
-
-    public static function executeUpdate($id, $data){
+    public static function executeUpdate(string $sqll, array $data=[]){
         $connect = parent::ouvrirConnexion();
-    
-        if ($id === null) {
-            // Insertion de données
-            $sql = $connect->prepare('INSERT INTO '.static::tableName().' ('.implode(',', array_keys($data)).') VALUES (:'.implode(',:', array_keys($data)).')');
-        } else {
-            // Mise à jour des données
-            $updateFields = [];
-            foreach ($data as $key => $value) {
-                $updateFields[] = $key.' = :'.$key;
-            }
-            $sql = $connect->prepare('UPDATE '.static::tableName().' SET '.implode(',', $updateFields).' WHERE id = :id');
-            $sql->bindValue(':id', $id);
-        }
-    
+        $sql = $connect->prepare($sqll);
         $sql->execute($data);
-        $sql->closeCursor();
-    
-        if ($id === null) {
-            return $connect->lastInsertId();
+        if (str_starts_with(strtolower($sqll), "insert")) {
+            $data=$connect->lastInsertId();
+        }else{
+            $sql->rowCount();
         }
+        $sql ->closeCursor();
+        return $data;
     }
+
+    // public static function executeUpdate($id, $data){
+    //     $connect = parent::ouvrirConnexion();
+    
+    //     if ($id === null) {
+    //         // Insertion de données
+    //         $sql = $connect->prepare('INSERT INTO '.static::tableName().' ('.implode(',', array_keys($data)).') VALUES (:'.implode(',:', array_keys($data)).')');
+    //     } else {
+    //         // Mise à jour des données
+    //         $updateFields = [];
+    //         foreach ($data as $key => $value) {
+    //             $updateFields[] = $key.' = :'.$key;
+    //         }
+    //         $sql = $connect->prepare('UPDATE '.static::tableName().' SET '.implode(',', $updateFields).' WHERE id = :id');
+    //         $sql->bindValue(':id', $id);
+    //     }
+    
+    //     $sql->execute($data);
+    //     $sql->closeCursor();
+    
+    //     if ($id === null) {
+    //         return $connect->lastInsertId();
+    //     }
+    // }
     
 }

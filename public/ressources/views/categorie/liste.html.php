@@ -46,7 +46,7 @@
                         <td><?= $data->getLibelle();?></td>
                         <td>
                             <a name="" id="" class="btn btn-success" href="#" role="button">Edit</a>
-                            <a name="" id="" class="btn btn-danger" href="#" role="button">Delete</a>
+                            <a name="" id="" class="btn btn-danger" href="<?=WEB_URL . "?path="?>" role="button">Delete</a>
 
                         </td>
                     </tr>

@@ -11,9 +11,13 @@ function dump($data){
 
 function DateEnFrancais($dateAppro) {
     $timestamp = strtotime($dateAppro);
-    return date('d-m-Y', $timestamp);
+    return date('d/m/Y', $timestamp);
 }
 function DateEnAnglais($dateAppro) {
     $timestamp = strtotime($dateAppro);
-    return date('Y-m-d', $timestamp);
+    return date('Y/m/d', $timestamp);
+}
+
+function asset(string $path) {
+    echo WEB_URL."ressources/$path";
 }

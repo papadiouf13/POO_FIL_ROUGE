@@ -13,9 +13,9 @@ abstract class Controller {
     public function view(string $file , array $data= []){
         extract($data); 
         ob_start();
-    require "../ressources/views/".$file.".html.php";
+    require "../public/ressources/views/".$file.".html.php";
     $content_for_view = ob_get_clean();
-    require "../ressources/views/base.layout.html.php";
+    require "../public/ressources/views/base.layout.html.php";
     }
     public function redirect(string $path){
         header("Location:".WEB_URL."?path=$path");

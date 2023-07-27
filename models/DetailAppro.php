@@ -8,16 +8,16 @@ class DetailAppro extends Model{
     protected static function tableName(){
         return "detail_appro_article_conf";
     }
-
+    private int $article;
     public ArticleConfection $articleModel;
 
     public function  __construct() {
         $this->articleModel = new ArticleConfection();
     }
 
-    // public function article(){
-    //     return $this->articleModel->find($this->articleConId);
-    // }
+    public function article(){
+        return $this->articleModel->find($this->article());
+    }
 
     public static function findDetailByAppro(int $approId){
         // die('tioukh');

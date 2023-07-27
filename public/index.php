@@ -19,8 +19,6 @@ if (isset($_REQUEST["path"])) {
         $ctrl -> index();
     }elseif($path=="article"){
         $ctrlArticle->index();
-    }elseif($path=="appro"){
-        $ctrlAppro->index();
     }elseif($path=="detailappro"){
         $_SESSION['id'] = $_GET['id'];
         $ctrlApproDetail->index();
@@ -30,6 +28,16 @@ if (isset($_REQUEST["path"])) {
         $ctrlArticle->form();
     }elseif($path=="store-article"){
         $ctrlArticle->store();
+    }elseif($path=="filtrer"){
+        $ctrlAppro->filtre();
+    } elseif($path=="appro"){
+        $ctrlAppro->index();
+    }elseif($path=="form-appro"){
+        $ctrlAppro->form();
+    }elseif($path=="update-paiement"){
+        $ctrlAppro->updatePaiement();
+    }elseif($path=="store-appro"){
+        $ctrlAppro->store();
     }
 }else{
     $ctrl -> index();
